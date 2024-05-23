@@ -2,7 +2,7 @@
 
 
 
-![Screen Shot](/Pong.png)
+![Screen Shot](/pong.png)
 
 download compiled exe here
 

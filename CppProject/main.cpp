@@ -1,3 +1,6 @@
+//define to give everything a modern look
+#define ModernLook
+
 #include <iostream>
 #include "raylib.h"
 
@@ -21,20 +24,32 @@
 // speed increment per collision
 #define BallSpeedIncrement 0.5f 
 
+
+
+#define GREEN Color{ 38, 185, 154, 255 }
+#define DARK_GREEN Color{ 20, 160, 133, 255 }
+#define LIGHT_GREEN Color{ 129, 204, 184, 255 }
+#define YELLOW Color{ 243, 213, 91, 255 }
+
+
 int player1_score {0};
 int player2_score {0};
 
 Ball ball {&player1_score, &player2_score};
 
 //Paddle player1 {KEY_W, KEY_S};
-PaddleCPU player1 {&ball, CPU_HARD};
+PaddleCPU player1 {&ball, CPU_MEDIUM};
 
-//Paddle player2 {KEY_UP, KEY_DOWN};
-PaddleCPU player2 {&ball, CPU_VERY_EASY};
+Paddle player2 {KEY_UP, KEY_DOWN};
+//PaddleCPU player2 {&ball, CPU_VERY_EASY};
 
 void InitializeClasses()
 {
     ball.color = WHITE;
+#ifdef ModernLook
+    ball.color = YELLOW;
+#endif // ModernLook
+
     ball.radius = 20;
     ball.x = SW2;
     ball.y = SH2;
@@ -86,7 +101,7 @@ int main(void)
     
     //one of the first things we have to do
     InitWindow(SW, SH, "my window lol");
-    SetTargetFPS(120);
+    SetTargetFPS(60);
 
 
     //initialize the paddles and the ball
@@ -114,7 +129,15 @@ int main(void)
         }
 
         // Drawing
+#ifdef ModernLook
+        ClearBackground(DARK_GREEN);
+        DrawRectangle(SW2, 0, SW2, SH, GREEN);
+        DrawCircle(SW2, SH2, 150, LIGHT_GREEN);
+#endif // ModernLook
+#ifndef ModernLook
         ClearBackground(BLACK);
+#endif // !ModernLook
+
         DrawLine(SW2, 0, SW2, SH, WHITE);
 
         ball.Draw();

@@ -25,7 +25,7 @@ private:
     float reactionDelay {0.025f};
     float elapsedTime {0.0f};
 public:
-    PaddleCPU(Ball* pBall, float errorLevel = 0.001);
+    PaddleCPU(Ball* pBall, float errorLevel = CPU_MEDIUM);
     void Update();
 };
 

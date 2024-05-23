@@ -24,7 +24,13 @@ void Paddle::ClampYPosition()
 
 void Paddle::Draw()
 {
+#ifndef ModernLook
+    DrawRectangleRounded(Rectangle {x, y, width, height} ,0.8, 0, color);
+#endif // !ModernLook
+
+#ifdef ModernLook
     DrawRectangle(x, y, width, height, color);
+#endif // ModernLook
 }
 
 void Paddle::Update()
